@@ -1,3 +1,4 @@
 # UII-Act-11-dos-tablas-Django-Maximiliano-Lira
-<img width="1346" height="691" alt="image" src="https://github.com/user-attachments/assets/398a299a-a732-4e56-b76a-c853af16279a" />
-<img width="1366" height="678" alt="image" src="https://github.com/user-attachments/assets/586c47bd-ced6-4d5f-85eb-0dbd74fdaac0" />
+<img width="1357" height="680" alt="image" src="https://github.com/user-attachments/assets/d4517f40-969b-4cbb-8548-57b8dff442c2" />
+<img width="1366" height="678" alt="image" src="https://github.com/user-attachments/assets/c8d9420d-d753-45c1-8b19-9b194361274a" />
+
