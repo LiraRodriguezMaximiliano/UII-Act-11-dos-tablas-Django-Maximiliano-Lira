@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block titulo %}{{ animal.nombre }} | Granja de Vacas{% endblock %}
+
+{% block contenido %}
+<article class="artist-detail">
+    <div class="artist-banner">
+        {% if animal.foto_animal %}
+            <img src="{{ animal.foto_animal.url }}" alt="Foto de {{ animal.nombre }}" class="detail-photo">
+        {% else %}
+            <div class="detail-placeholder">🐄</div>
+        {% endif %}
+        <div class="artist-info">
+            <h1>{{ animal.nombre }} (ID: {{ animal.id }})</h1>
+            <h3>Raza: {{ animal.raza }}</h3>
+            <p><strong>Sexo:</strong> {{ animal.get_sexo_display }}</p>
+            <p><strong>Nacimiento:</strong> {{ animal.fecha_nacimiento|date:"d M, Y" }}</p>
+            <p><strong>Estado Actual:</strong> {{ animal.estado_actual }}</p>
+        </div>
+    </div>
+
+    <div class="detail-actions">
+        <a href="{% url 'app_granja_vacas:editar_animal' animal.id %}" class="btn btn-secondary">✏️ Editar Animal</a>
+        <a href="{% url 'app_granja_vacas:registrar_evento' animal.id %}" class="btn btn-primary">➕ Registrar Evento Sanitario</a>
+        <a href="{% url 'app_granja_vacas:borrar_animal' animal.id %}" class="btn btn-danger">🗑️ Borrar Animal</a>
+    </div>
+
+    <section class="songs-section">
+        <h2>Historial de Eventos Sanitarios</h2>
+        {% if eventos %}
+        <ul class="song-list">
+            {% for evento in eventos %}
+            <li>
+                <strong>{{ evento.evento }}</strong> 
+                (Fecha: {{ evento.fecha|date:"d M, Y" }}) - 
+                Tratamiento: {{ evento.tratamiento }} - 
+                Dosis: {{ evento.dosis }} - 
+                Vet: {{ evento.veterinario }}
+                
+                <a href="{% url 'app_granja_vacas:editar_evento' evento.id %}" 
+                   class="btn btn-secondary" 
+                   style="margin-left: 10px; padding: 5px 10px; font-size: 0.8em;">
+                    ✏️ Editar
+                </a>
+                <a href="{% url 'app_granja_vacas:borrar_evento' evento.id %}" 
+                   class="btn btn-danger" 
+                   style="margin-left: 5px; padding: 5px 10px; font-size: 0.8em;">
+                    🗑️ Borrar
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p class="empty-message">No hay eventos sanitarios registrados para este animal.</p>
+        {% endif %}
+    </section>
+</article>
+{% endblock %}

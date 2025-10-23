@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block titulo %}Eliminar Evento | Granja de Vacas{% endblock %}
+
+{% block contenido %}
+<h2>¿Estás seguro de que quieres borrar el evento sanitario?</h2>
+
+<article class="artist-detail">
+    <h3>Detalles del Evento a Eliminar:</h3>
+    <ul class="song-list" style="margin-bottom: 2rem;">
+        <li>**Animal:** {{ evento.animal.nombre }} (ID: {{ evento.animal.id }})</li>
+        <li>**Evento:** {{ evento.evento }}</li>
+        <li>**Tratamiento:** {{ evento.tratamiento }}</li>
+        <li>**Fecha:** {{ evento.fecha|date:"d M, Y" }}</li>
+        <li>**Veterinario:** {{ evento.veterinario }}</li>
+    </ul>
+
+    <p>Esta acción no se puede deshacer.</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="actions">
+            <button type="submit" class="btn btn-danger">Sí, Borrar Evento</button>
+            <a href="{% url 'app_granja_vacas:detalle_animal' evento.animal.id %}" class="btn">Cancelar</a>
+        </div>
+    </form>
+</article>
+{% endblock %}

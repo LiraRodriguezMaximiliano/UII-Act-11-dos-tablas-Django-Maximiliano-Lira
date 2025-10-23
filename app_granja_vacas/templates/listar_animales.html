@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block titulo %}Animales | Granja de Vacas{% endblock %}
+
+{% block contenido %}
+<div class="page-header">
+    <h2>Animales Registrados</h2>
+    <a href="{% url 'app_granja_vacas:crear_animal' %}" class="btn btn-primary">+ Agregar Animal</a>
+</div>
+
+<ul class="artist-grid">
+    {% for animal in animales %}
+    <li class="artist-card">
+        <a href="{% url 'app_granja_vacas:detalle_animal' animal.id %}">
+            {% if animal.foto_animal %}
+                <img src="{{ animal.foto_animal.url }}" alt="Foto de {{ animal.nombre }}" class="artist-img">
+            {% else %}
+                <div class="artist-placeholder">🐄</div>
+            {% endif %}
+            <h3>{{ animal.nombre }}</h3>
+            <p class="artist-nationality">Raza: {{ animal.raza }}</p>
+            <p class="artist-nationality">Estado: {{ animal.estado_actual }}</p>
+        </a>
+    </li>
+    {% empty %}
+    <li class="no-artists">No hay animales registrados en la granja.</li>
+    {% endfor %}
+</ul>
+{% endblock %}
